@@ -226,6 +226,10 @@ img,svg{ max-width:100%; }
   transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
   box-shadow: 0 10px 20px rgba(0,0,0,.18);
 }
+button.link-btn{
+  font: inherit;
+  text-align:left;
+}
 .link-btn:hover{
   transform: translateY(-2px);
   border-color: rgba(255,255,255,.24);
@@ -255,6 +259,20 @@ img,svg{ max-width:100%; }
     linear-gradient(135deg, rgba(34, 197, 94, .28), rgba(14, 165, 233, .20)),
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
 }
+.link-btn.ios-download{
+  padding: 16px 14px;
+  border-color: rgba(59, 130, 246, .42);
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, .22), rgba(14, 165, 233, .16)),
+    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
+  box-shadow: 0 18px 34px rgba(0,0,0,.24);
+}
+.link-btn.ios-download:hover{
+  border-color: rgba(147, 197, 253, .48);
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, .28), rgba(14, 165, 233, .20)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+}
 .lb-ic{
   width: 44px; height: 44px;
   display:grid;
@@ -270,6 +288,11 @@ img,svg{ max-width:100%; }
   background: rgba(2, 6, 23, .30);
   border-color: rgba(255,255,255,.20);
 }
+.ios-ic{
+  color: rgba(238,243,255,.84);
+  background: rgba(2, 6, 23, .28);
+  border-color: rgba(255,255,255,.16);
+}
 .lb-tx{
   display:flex;
   flex-direction:column;
@@ -283,6 +306,12 @@ img,svg{ max-width:100%; }
   font-weight: 800;
   line-height: 1.1;
   text-transform: uppercase;
+}
+.lb-kicker.soon{
+  color: #bae6fd;
+}
+.lb-kicker.ios-kicker{
+  color: #bfdbfe;
 }
 .lb-title{
   font-weight: 800;
@@ -303,6 +332,19 @@ img,svg{ max-width:100%; }
   opacity:.85;
   font-weight: 800;
   flex:0 0 auto;
+}
+.lb-status{
+  margin-left:auto;
+  flex:0 0 auto;
+  padding: 7px 9px;
+  border-radius: 999px;
+  color: rgba(238,243,255,.82);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space:nowrap;
 }
 
 .micro{
@@ -452,6 +494,14 @@ img,svg{ max-width:100%; }
 
   .link-btn.app-download{
     padding: 13px 12px;
+  }
+
+  .link-btn.ios-download{
+    padding: 13px 12px;
+  }
+
+  .lb-status{
+    display:none;
   }
 
   .lb-ic{
