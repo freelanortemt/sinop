@@ -14,14 +14,14 @@
 
 *{ box-sizing:border-box; }
 html{
-  height:100%;
+  min-height:100%;
   width:100%;
   max-width:100vw;
   overflow-x:hidden;
   -webkit-text-size-adjust:100%;
   touch-action:pan-y;
 }
-body{ height:100%; }
+body{ min-height:100%; }
 body{
   margin:0;
   width:100%;
@@ -273,6 +273,19 @@ button.link-btn{
     linear-gradient(135deg, rgba(59, 130, 246, .28), rgba(14, 165, 233, .20)),
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
 }
+.link-btn.official-site{
+  padding: 15px 14px;
+  border-color: rgba(251, 191, 36, .38);
+  background:
+    linear-gradient(135deg, rgba(251, 191, 36, .18), rgba(20, 184, 166, .14)),
+    linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.07));
+}
+.link-btn.official-site:hover{
+  border-color: rgba(252, 211, 77, .52);
+  background:
+    linear-gradient(135deg, rgba(251, 191, 36, .23), rgba(20, 184, 166, .18)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+}
 .lb-ic{
   width: 44px; height: 44px;
   display:grid;
@@ -293,6 +306,23 @@ button.link-btn{
   background: rgba(2, 6, 23, .28);
   border-color: rgba(255,255,255,.16);
 }
+.site-ic{
+  color: #fef3c7;
+  background: rgba(120, 53, 15, .24);
+  border-color: rgba(252, 211, 77, .24);
+}
+.instagram-ic{
+  color: #fbcfe8;
+  background:
+    radial-gradient(circle at 30% 105%, rgba(251, 191, 36, .34), transparent 42%),
+    linear-gradient(135deg, rgba(219, 39, 119, .38), rgba(79, 70, 229, .30));
+  border-color: rgba(251, 207, 232, .22);
+}
+.facebook-ic{
+  color: #60a5fa;
+  background: rgba(30, 64, 175, .24);
+  border-color: rgba(147, 197, 253, .20);
+}
 .lb-tx{
   display:flex;
   flex-direction:column;
@@ -312,6 +342,9 @@ button.link-btn{
 }
 .lb-kicker.ios-kicker{
   color: #bfdbfe;
+}
+.lb-kicker.site-kicker{
+  color: #fde68a;
 }
 .lb-title{
   font-weight: 800;
@@ -359,10 +392,33 @@ button.link-btn{
   text-align:center;
 }
 .micro-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
   padding: 6px 10px;
   border-radius: 999px;
   background: rgba(34,197,94,.14);
   border: 1px solid rgba(34,197,94,.22);
+}
+.micro-check{
+  width:14px;
+  height:14px;
+  display:inline-block;
+  border-radius:999px;
+  background: rgba(34,197,94,.92);
+  position:relative;
+  flex:0 0 auto;
+}
+.micro-check::after{
+  content:"";
+  position:absolute;
+  left:4px;
+  top:2.5px;
+  width:4px;
+  height:7px;
+  border: solid #052e16;
+  border-width:0 2px 2px 0;
+  transform:rotate(45deg);
 }
 .micro-sep{ opacity:.55; }
 

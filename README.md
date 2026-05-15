@@ -1,7 +1,7 @@
 # Freela Norte — Link in Bio (GitHub Pages)
 
 ## Como usar
-1) Edite os `href` no arquivo `index.html` (procure por `SEU_...`).
+1) Edite os `href` no arquivo `index.html` quando algum link oficial mudar.
 2) Suba esta pasta para um repositório no GitHub.
 3) Em **Settings → Pages**, selecione a branch e a pasta root.
 
