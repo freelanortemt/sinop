@@ -53,17 +53,6 @@
     }
   });
 
-  // Immediate tap feedback for the WhatsApp CTA before the external app opens.
-  const whatsappLink = $(".whatsapp-link");
-  const flashWhatsApp = () => {
-    whatsappLink?.classList.add("is-tapped");
-    window.setTimeout(() => whatsappLink?.classList.remove("is-tapped"), 700);
-  };
-  whatsappLink?.addEventListener("pointerdown", flashWhatsApp);
-  whatsappLink?.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") flashWhatsApp();
-  });
-
   // Modal
   const modal = $("#modal");
   const openModal = $("#openModal");
