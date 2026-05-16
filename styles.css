@@ -7,6 +7,7 @@
   --text:#eef3ff;
   --muted: rgba(238,243,255,.72);
   --shadow: 0 18px 50px rgba(0,0,0,.45);
+  --ease: cubic-bezier(.2,.8,.2,1);
   --r: 22px;
   --r2: 16px;
   --max: 520px;
@@ -101,6 +102,7 @@ img,svg{ max-width:100%; }
   margin: 10px 0 14px;
   user-select:none;
   min-width:0;
+  animation: fadeUp .55s var(--ease) both;
 }
 .brand-logo{
   border-radius: 18px;
@@ -129,12 +131,15 @@ img,svg{ max-width:100%; }
   max-width:100%;
   min-width:0;
   overflow:hidden;
-  background: linear-gradient(180deg, var(--card), rgba(255,255,255,.06));
-  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.055)),
+    linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,.18);
   border-radius: var(--r);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.10);
   padding: 18px 16px 14px;
   backdrop-filter: blur(10px);
+  animation: fadeUp .65s var(--ease) .08s both;
 }
 
 .hero-top{
@@ -198,6 +203,26 @@ img,svg{ max-width:100%; }
   font-size: 14px;
   overflow-wrap:anywhere;
 }
+.trust-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin: 0 0 14px;
+}
+.trust-row span{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.07);
+  color: rgba(238,243,255,.82);
+  font-size: 11.5px;
+  font-weight: 800;
+  white-space:nowrap;
+}
 
 .links{
   display:flex;
@@ -214,6 +239,8 @@ img,svg{ max-width:100%; }
   max-width:100%;
   min-width:0;
   overflow:hidden;
+  position:relative;
+  isolation:isolate;
   display:flex;
   align-items:center;
   gap: 12px;
@@ -223,20 +250,28 @@ img,svg{ max-width:100%; }
   background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
   text-decoration:none;
   color: inherit;
-  transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+  transition: transform .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease), color .2s var(--ease);
   box-shadow: 0 10px 20px rgba(0,0,0,.18);
+}
+.link-btn > *{
+  position:relative;
+  z-index:1;
 }
 button.link-btn{
   font: inherit;
   text-align:left;
 }
 .link-btn:hover{
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: rgba(255,255,255,.24);
   background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
   box-shadow: 0 16px 26px rgba(0,0,0,.22);
 }
-.link-btn:active{ transform: translateY(0); }
+.link-btn:focus-visible{
+  outline: 2px solid rgba(125,211,252,.85);
+  outline-offset: 3px;
+}
+.link-btn:active{ transform: translateY(0) scale(.992); }
 
 .link-btn.primary{
   border-color: rgba(56, 189, 248, .38);
@@ -247,31 +282,69 @@ button.link-btn{
 }
 .link-btn.app-download{
   padding: 16px 14px;
-  border-color: rgba(34, 197, 94, .42);
+  border-color: rgba(134, 239, 172, .54);
   background:
-    linear-gradient(135deg, rgba(34, 197, 94, .22), rgba(14, 165, 233, .16)),
-    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
-  box-shadow: 0 18px 34px rgba(0,0,0,.24);
+    radial-gradient(600px 120px at 20% 0%, rgba(187, 247, 208, .20), transparent 62%),
+    linear-gradient(135deg, rgba(34, 197, 94, .27), rgba(14, 165, 233, .17)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.075));
+  box-shadow: 0 20px 38px rgba(0,0,0,.28), 0 0 0 1px rgba(34,197,94,.08);
 }
 .link-btn.app-download:hover{
-  border-color: rgba(125, 211, 252, .48);
+  border-color: rgba(187, 247, 208, .66);
   background:
-    linear-gradient(135deg, rgba(34, 197, 94, .28), rgba(14, 165, 233, .20)),
+    radial-gradient(600px 120px at 20% 0%, rgba(187, 247, 208, .28), transparent 62%),
+    linear-gradient(135deg, rgba(34, 197, 94, .33), rgba(14, 165, 233, .21)),
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+}
+.link-btn.app-download::before,
+.link-btn.ios-download::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  z-index:0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.22) 36%, transparent 54%);
+  opacity:0;
+  transform: translateX(-70%);
+  transition: opacity .28s var(--ease), transform .7s var(--ease);
+}
+.link-btn.app-download:hover::before,
+.link-btn.ios-download:hover::before{
+  opacity:1;
+  transform: translateX(70%);
 }
 .link-btn.ios-download{
   padding: 16px 14px;
   border-color: rgba(59, 130, 246, .42);
   background:
-    linear-gradient(135deg, rgba(59, 130, 246, .22), rgba(14, 165, 233, .16)),
-    linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
-  box-shadow: 0 18px 34px rgba(0,0,0,.24);
+    radial-gradient(600px 120px at 20% 0%, rgba(191, 219, 254, .20), transparent 62%),
+    linear-gradient(135deg, rgba(59, 130, 246, .25), rgba(14, 165, 233, .17)),
+    linear-gradient(180deg, rgba(255,255,255,.17), rgba(255,255,255,.075));
+  box-shadow: 0 20px 38px rgba(0,0,0,.28), 0 0 0 1px rgba(96,165,250,.08);
 }
 .link-btn.ios-download:hover{
   border-color: rgba(147, 197, 253, .48);
   background:
-    linear-gradient(135deg, rgba(59, 130, 246, .28), rgba(14, 165, 233, .20)),
+    radial-gradient(600px 120px at 20% 0%, rgba(191, 219, 254, .27), transparent 62%),
+    linear-gradient(135deg, rgba(59, 130, 246, .31), rgba(14, 165, 233, .21)),
     linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+}
+.link-btn.whatsapp-link{
+  border-color: rgba(37, 211, 102, .26);
+}
+.link-btn.whatsapp-link:hover{
+  border-color: rgba(74, 222, 128, .52);
+  background:
+    linear-gradient(135deg, rgba(37, 211, 102, .20), rgba(22, 163, 74, .12)),
+    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
+  box-shadow: 0 18px 30px rgba(0,0,0,.22), 0 0 0 1px rgba(37,211,102,.08);
+}
+.link-btn.whatsapp-link:active,
+.link-btn.whatsapp-link.is-tapped{
+  border-color: rgba(134, 239, 172, .78);
+  background:
+    linear-gradient(135deg, rgba(37, 211, 102, .60), rgba(22, 163, 74, .34)),
+    linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+  box-shadow: 0 18px 34px rgba(37,211,102,.18), 0 0 0 1px rgba(134,239,172,.16);
 }
 .link-btn.official-site{
   padding: 15px 14px;
@@ -295,6 +368,10 @@ button.link-btn{
   border: 1px solid rgba(255,255,255,.12);
   flex: 0 0 auto;
   font-size: 18px;
+  transition: transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+}
+.link-btn:hover .lb-ic{
+  transform: scale(1.04);
 }
 .app-ic{
   color: #ecfeff;
@@ -323,6 +400,16 @@ button.link-btn{
   background: rgba(30, 64, 175, .24);
   border-color: rgba(147, 197, 253, .20);
 }
+.whatsapp-ic{
+  background: rgba(5, 46, 22, .22);
+  border-color: rgba(134, 239, 172, .18);
+}
+.whatsapp-link.is-tapped .whatsapp-ic,
+.whatsapp-link:active .whatsapp-ic{
+  transform: scale(1.08);
+  background: rgba(5, 46, 22, .34);
+  border-color: rgba(187, 247, 208, .36);
+}
 .lb-tx{
   display:flex;
   flex-direction:column;
@@ -345,6 +432,9 @@ button.link-btn{
 }
 .lb-kicker.site-kicker{
   color: #fde68a;
+}
+.lb-kicker.whatsapp-kicker{
+  color: #86efac;
 }
 .lb-title{
   font-weight: 800;
@@ -378,6 +468,17 @@ button.link-btn{
   font-weight: 800;
   text-transform: uppercase;
   white-space:nowrap;
+  transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+}
+.app-download:hover .lb-status{
+  color:#ecfdf5;
+  border-color: rgba(187,247,208,.28);
+  background: rgba(22,101,52,.24);
+}
+.ios-download:hover .lb-status{
+  color:#eff6ff;
+  border-color: rgba(191,219,254,.28);
+  background: rgba(30,64,175,.22);
 }
 
 .micro{
@@ -539,6 +640,17 @@ button.link-btn{
     font-size: 13px;
   }
 
+  .trust-row{
+    gap:6px;
+    margin-bottom:12px;
+  }
+
+  .trust-row span{
+    min-height:26px;
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+
   .links{
     gap: 8px;
   }
@@ -590,5 +702,16 @@ button.link-btn{
 }
 
 @media (prefers-reduced-motion: reduce){
-  *{ transition:none !important; scroll-behavior:auto !important; }
+  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform: translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
 }
